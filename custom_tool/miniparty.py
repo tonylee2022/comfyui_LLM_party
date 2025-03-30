@@ -14,6 +14,8 @@ import base64
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 import torch
 import easyocr
+# 导入models_dict用于模型选择列表
+from ..config_update import models_dict
 # 当前脚本目录的上级目录
 current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 config_path = os.path.join(current_dir, "config.ini")
@@ -46,7 +48,7 @@ class mini_party:
             "required": {
                 "input_str": ("STRING", {"forceInput": True}),
                 "prompt": ("STRING", {"default": "input function here","multiline": True}),
-                "model_name": ("STRING", {"default": "gpt-4o-mini",}),
+                "model_name": (models_dict, {"default": "gpt-4o-mini", "tooltip": "The model name."}),
             },
             "optional": {
                 "base_url": (
@@ -141,7 +143,7 @@ class mini_translate:
                 "target_language": ("STRING", {"default": "English"}),
                 "tone": ("STRING", {"default": "正式"}),
                 "degree": ("INT", {"default": 5, " min": 0, "max": 10}),
-                "model_name": ("STRING", {"default": "gpt-4o-mini",}),
+                "model_name": (models_dict, {"default": "gpt-4o-mini", "tooltip": "The model name."}),
             },
             "optional": {
                 "base_url": (
@@ -254,7 +256,7 @@ class mini_error_correction:
         return {
             "required": {
                 "input_str": ("STRING", {"forceInput": True}),
-                "model_name": ("STRING", {"default": "gpt-4o-mini",}),
+                "model_name": (models_dict, {"default": "gpt-4o-mini", "tooltip": "The model name."}),
             },
             "optional": {
                 "base_url": (
@@ -377,7 +379,7 @@ class mini_summary:
         return {
             "required": {
                 "input_str": ("STRING", {"forceInput": True}),
-                "model_name": ("STRING", {"default": "gpt-4o-mini",}),
+                "model_name": (models_dict, {"default": "gpt-4o-mini", "tooltip": "The model name."}),
             },
             "optional": {
                 "base_url": (
@@ -509,7 +511,7 @@ class mini_story:
         return {
             "required": {
                 "theme": ("STRING", {"default": "龟兔赛跑的故事","multiline": True}),
-                "model_name": ("STRING", {"default": "gpt-4o-mini",}),
+                "model_name": (models_dict, {"default": "gpt-4o-mini", "tooltip": "The model name."}),
             },
             "optional": {
                 "base_url": (
@@ -629,7 +631,7 @@ class mini_ocr:
                 "image": ("IMAGE", {}),
                 "gpu": ("BOOLEAN", {"default": True,}),
                 "language_name": ("STRING", {"default": "ch_sim,en"}),
-                "model_name": ("STRING", {"default": "gpt-4o-mini",}),
+                "model_name": (models_dict, {"default": "gpt-4o-mini", "tooltip": "The model name."}),
             },
             "optional": {
                 "base_url": (
@@ -854,7 +856,7 @@ class mini_sd_prompt:
         return {
             "required": {
                 "prompt": ("STRING", {"default": "a girl","multiline": True}),
-                "model_name": ("STRING", {"default": "gpt-4o-mini",}),
+                "model_name": (models_dict, {"default": "gpt-4o-mini", "tooltip": "The model name."}),
             },
             "optional": {
                 "base_url": (
@@ -1011,7 +1013,7 @@ class mini_flux_prompt:
         return {
             "required": {
                 "prompt": ("STRING", {"default": "a girl","multiline": True}),
-                "model_name": ("STRING", {"default": "gpt-4o-mini",}),
+                "model_name": (models_dict, {"default": "gpt-4o-mini", "tooltip": "The model name."}),
             },
             "optional": {
                 "base_url": (
@@ -1139,7 +1141,7 @@ class mini_sd_tag:
         return {
             "required": {
                 "image": ("IMAGE", {}),
-                "model_name": ("STRING", {"default": "gpt-4o-mini",}),
+                "model_name": (models_dict, {"default": "gpt-4o-mini", "tooltip": "The model name."}),
             },
             "optional": {
                 "base_url": (
@@ -1318,7 +1320,7 @@ class mini_flux_tag:
         return {
             "required": {
                 "image": ("IMAGE", {}),
-                "model_name": ("STRING", {"default": "gpt-4o-mini",}),
+                "model_name": (models_dict, {"default": "gpt-4o-mini", "tooltip": "The model name."}),
             },
             "optional": {
                 "base_url": (
@@ -1495,7 +1497,7 @@ class mini_intent_recognition:
         return {
             "required": {
                 "input_str": ("STRING", {"forceInput": True}),
-                "model_name": ("STRING", {"default": "gpt-4o-mini",}),
+                "model_name": (models_dict, {"default": "gpt-4o-mini", "tooltip": "The model name."}),
             },
             "optional": {
                 "base_url": (

@@ -371,17 +371,12 @@ def dispatch_tool(tool_name: str, tool_params: dict) -> str:
 
 def ensure_version_suffix(base_url):
     """
-    确保 base_url 以 '/v<n>/' 结尾，其中 n 是数字。
-    如果不是这样，则添加 '/v1/' 到末尾。
+    确保 base_url 以斜杠结尾，不添加任何版本号后缀。
+    这个函数只做一件事：如果URL没有以斜杠结尾，则添加斜杠。
     """
-    # 正则表达式匹配 '/v<n>/' 其中 <n> 是任意字符
-    match = re.search(r'/v(.+)/$', base_url)
-    
-    if not match:
-        # 如果没有匹配到，则添加 '/v1/'
-        if not base_url.endswith('/'):
-            base_url += '/'
-        base_url += 'v1/'
+    # 确保URL以斜杠结尾
+    if not base_url.endswith('/'):
+        base_url += '/'
     return base_url
 
 class Chat:
@@ -3210,4 +3205,3 @@ load_custom_tools()
 
 if __name__ == "__main__":
     print("hello llm party!")
-
